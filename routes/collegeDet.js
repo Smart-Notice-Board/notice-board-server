@@ -18,10 +18,8 @@ router.get('/college',function(req,res,next){
        }
         else{
            var d=[]
-           //console.log(collegeinfo);
            for(var i=0;i<collegeinfo.length;i++) {
                d[i]=collegeinfo[i]['college_name'];
-
            }
            z= _.uniq(d);
            var m=[];
@@ -31,8 +29,6 @@ router.get('/college',function(req,res,next){
                   var semester=[]
                    if(z[i] == collegeinfo[j]['college_name']){
                        semester.push({name:collegeinfo[j]['semester']});
-
-                       console.log(collegeinfo[j]['department']);
                             departments.push({name:collegeinfo[j]['department'],
                                                 sem :semester});
                    }
