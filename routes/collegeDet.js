@@ -16,28 +16,50 @@ router.get('/college',function(req,res,next){
        if(err){
            res.json({error:err});
        }
-        else{
-           var d=[]
-           for(var i=0;i<collegeinfo.length;i++) {
-               d[i]=collegeinfo[i]['college_name'];
+        else {
+           var d = []
+           for (var i = 0; i < collegeinfo.length; i++) {
+               d[i] = collegeinfo[i]['college_name'];
            }
-           z= _.uniq(d);
-           var m=[];
-           for(var i=0;i< z.length;i++){
-               var departments=[]
-               for(var j=0;j<collegeinfo.length;j++){
-                  var semester=[]
-                   if(z[i] == collegeinfo[j]['college_name']){
-                       semester.push({name:collegeinfo[j]['semester']});
-                            departments.push({name:collegeinfo[j]['department'],
-                                                sem :semester});
+           z = _.uniq(d);
+           var dep = [];
+           for (var i = 0; i < z.length; i++) {
+               for (var j = 0; j < collegeinfo.length; j++) {
+                   if (z[i] == collegeinfo[j]['college_name']) {
+                       dep.push(collegeinfo[j]['department']);
                    }
-                   }
-               m.push({name:z[i],
-                       department:departments})
+               }
            }
-           res.json({result:m});
-       }
+           v = _.uniq(dep);
+           var m = [];
+           for (var i = 0; i < z.length; i++) {
+               var departments = []
+               for (var t = 0; t < v.length; t++) {
+                   var semester = [];
+                   for (var j = 0; j < collegeinfo.length; j++) {
+                       if ((z[i] === collegeinfo[j]['college_name']) && (v[t] === collegeinfo[j]['department'])) {
+                           semester.push({name: collegeinfo[j]['semester']});
+
+                       }
+                   }
+                   var dept = {
+                       name: v[t],//collegeinfo[j]['department'],
+                       sem: semester
+                   }
+
+                   if(dept.sem.length !== 0) {
+                       departments.push(dept);
+                   }
+
+
+               }
+               m.push({
+                   name: z[i],
+                   department: departments
+               });
+           }
+               res.json({result: m});
+           }
     });
 });
 module.exports = router;

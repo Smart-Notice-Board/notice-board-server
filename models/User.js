@@ -8,10 +8,10 @@ var connection = mysql.createConnection(cfg.mysql);
 
 
 
-function fetchUser(uname,cb) {
-   var query = "Select * from USER where username = ?";
+function fetchUser(uname,passw,cb) {
+   var query = "Select * from USER where username = ? and password = ?";
 
-    connection.query(query,[uname],function(err,rows){
+    connection.query(query,[uname,passw],function(err,rows){
        if(err){
              cb(err);
        } else {
@@ -22,8 +22,12 @@ function fetchUser(uname,cb) {
 
 }
 
+function authenticate(){
+
+}
+
 
 module.exports = {
-    getUserByUserName: fetchUser
+    getUser: fetchUser
 
 }
