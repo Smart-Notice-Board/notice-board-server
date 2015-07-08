@@ -15,8 +15,10 @@ function fetchColleges(cb) {
             console.log("Hi")
             cb(err);
         } else {
+            connection.end();
             // var user = new User(rows[0]);
-            console.log("hi");
+            //console.log("hi");
+
             cb(rows);
 
         }

@@ -12,6 +12,7 @@ router.get('/',function(req,res,next){
 });
 
 router.get('/college',function(req,res,next){
+    console.log(req.body)
     collegeinfo.fetchCollegeDetails(function(collegeinfo,err){
        if(err){
            res.json({error:err});

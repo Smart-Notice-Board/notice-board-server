@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var collegedet = require('./routes/collegeDet');
+var notices = require('./routes/notices');
 
 var app = express();
 
@@ -23,12 +24,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.bodyParser());
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login',login);
 app.use('/collegedet',collegedet);
-
+app.use('/notices',notices);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -49,6 +51,7 @@ if (app.get('env') === 'development') {
     });
   });
 }
+
 
 // production error handler
 // no stacktraces leaked to user
