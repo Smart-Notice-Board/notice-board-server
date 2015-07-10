@@ -22,9 +22,11 @@ router.post('/login', function (req, res, next) {
         User.getUser(uname, passw, function (User, err) {
 
             if (err) {
+                req.cookies.loggedIn = false;
                 res.json({error: err});
             }
             else {
+                req.cookies.loggedIn = true;
                 res.json({result: User});
             }
 
