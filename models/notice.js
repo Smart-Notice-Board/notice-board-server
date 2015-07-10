@@ -6,11 +6,11 @@ var mysql = require('mysql');
 
 var connection = mysql.createConnection(cfg.mysql);
 
-function fetchNotices(college,department,semester,cb){
+function fetchNotices(param,cb){
 
     var query = "Select * from NOTICE where college_name = ? and department =? and Semester = ? ";
 
-    connection.query(query,[college,department,semester],function(err,rows){
+    connection.query(query,[param.college,param.department,param.semester],function(err,rows){
         if(err){
             cb(err);
         }
@@ -20,7 +20,12 @@ function fetchNotices(college,department,semester,cb){
     });
 
 }
+function storeNotices(param,cb){
 
+
+}
 module.exports = {
-    fetchAllNotices:fetchNotices
+    fetchAllNotices:fetchNotices,
+    storeNotices:storeNotices
+
 }

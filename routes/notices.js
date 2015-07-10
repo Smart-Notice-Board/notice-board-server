@@ -16,13 +16,13 @@ router.post('/',function(req,res,next){
 router.post('/deptnotices',function(req,res,next){
     //console.log("hi");
     console.log(req.body);
-    notice.fetchAllNotices(req.body.college,req.body.department,req.body.semester,function(notice,err){
+    notice.fetchAllNotices(req.body,function(notice,err){
         if(err){
             res.json({error:err});
         }
 
         else{
-            res.json({"resefesult":notice});
+            res.json({"result":notice});
         }
     });
 
