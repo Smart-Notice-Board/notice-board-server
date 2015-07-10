@@ -32,21 +32,8 @@ router.post('/', function (req, res, next) {
                  var token = jwt.sign(User, "RAGHAV", {
                     expiresInMinutes: 1440 // expires in 24 hours
                 });
-                /*User.insertToken(token,function(User,err){
-                    if(err){
-                        res.json({error:err});
-                    }
-                    else{*/
                         res.redirect('/noticesupload'+'?token='+token);
-                        //res.json({message:"updated token"});
-                    //}
-              //  });
 
-                /*res.json({
-                    success: true,
-                    message: 'Enjoy your token!',
-                    token: token
-                });*/
             }
 
         });
