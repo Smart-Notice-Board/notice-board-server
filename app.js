@@ -13,6 +13,8 @@ var collegedet = require('./routes/collegeDet');
 var notices = require('./routes/notices');
 var noticesupload = require('./routes/noticesupload');
 
+var logout = require('./routes/logout');
+
 var app = express();
 
 // view engine setup
@@ -39,6 +41,8 @@ app.use('/login',login);
 app.use('/collegedet',collegedet);
 app.use('/notices',notices);
 app.use('/noticesupload',noticesupload);
+
+app.use('/logout', logout);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
