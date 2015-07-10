@@ -7,5 +7,6 @@ module.exports = {
         port:8889,
     user: "root",
     password:"root",
-    database:"digitalnoticeboard"}
+    database:"digitalnoticeboard"},
+    'secret': 'ilovescotchyscotch'
 }

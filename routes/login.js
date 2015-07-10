@@ -5,12 +5,13 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User')
 var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 router.get('/', function (req, res, next) {
     res.render('login');
 });
 
 
-router.post('/login', function (req, res, next) {
+router.post('/', function (req, res, next) {
     var uname = req.body.username
     var passw = req.body.password
     crypto.pbkdf2(passw, 'Salt', 100, 30, function (err, key) {
@@ -22,12 +23,30 @@ router.post('/login', function (req, res, next) {
         User.getUser(uname, passw, function (User, err) {
 
             if (err) {
-                req.cookies.loggedIn = false;
                 res.json({error: err});
             }
-            else {
-                req.cookies.loggedIn = true;
-                res.json({result: User});
+            if(!User) {
+                    res.json({ success: false, message: 'Authentication failed. User not found.' });
+            }
+            else{
+                 var token = jwt.sign(User, "RAGHAV", {
+                    expiresInMinutes: 1440 // expires in 24 hours
+                });
+                /*User.insertToken(token,function(User,err){
+                    if(err){
+                        res.json({error:err});
+                    }
+                    else{*/
+                        res.redirect('/noticesupload'+'?token='+token);
+                        //res.json({message:"updated token"});
+                    //}
+              //  });
+
+                /*res.json({
+                    success: true,
+                    message: 'Enjoy your token!',
+                    token: token
+                });*/
             }
 
         });

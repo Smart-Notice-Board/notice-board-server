@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var jwt = require('jsonwebtoken');
+var cfg = require('./config');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -13,13 +15,15 @@ var collegedet = require('./routes/collegeDet');
 var notices = require('./routes/notices');
 var noticesupload = require('./routes/noticesupload');
 
-var logout = require('./routes/logout');
+//var logout = require('./routes/logout');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.set('superSecret', cfg.secret);
 
 app.use(multer({
   dest: './public/uploads/'
@@ -35,14 +39,46 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.bodyParser());
 
-app.use('/', routes);
-app.use('/users', users);
 app.use('/login',login);
 app.use('/collegedet',collegedet);
 app.use('/notices',notices);
+app.use(function(req, res, next) {
+
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+
+    // verifies secret and checks exp
+    jwt.verify(token, "RAGHAV", function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+
+  }
+});
+
+app.use('/', routes);
+app.use('/users', users);
 app.use('/noticesupload',noticesupload);
 
-app.use('/logout', logout);
+
+//app.use('/logout', logout);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

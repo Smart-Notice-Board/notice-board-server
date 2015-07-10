@@ -9,18 +9,17 @@ var moment = require('moment');
 var notice = require('../models/notice');
 
 router.get('/',function(req,res,next){
-	if (req.cookies.loggedIn === true) {
+	console.log("hi");
 		res.render('noticeupload');
-	} else {
-		res.redirect('/login');
-	}
-    
+
 });
 
 router.post('/', function (req,res,next) {
+
+console.log("hello");
 console.log(req.body);
 
-	if (req.cookies.loggedIn === true) {
+	/*if (!req.cookies.loggedIn) {
 		console.log(req.files);
     	oldPath = "public/uploads";
 		if(req.body.type === 'image'){
@@ -33,7 +32,7 @@ console.log(req.body);
 		}
 	} else {
 		res.redirect('/login');
-	}
+	}*/
 
 
 });
