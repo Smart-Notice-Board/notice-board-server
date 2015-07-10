@@ -11,9 +11,11 @@ var notice = require('../models/notice');
 router.get('/',function(req,res,next){
 	console.log("hi");
 		res.render('noticeupload');
+	next();
 
 });
 
+//not going here
 router.post('/', function (req,res,next) {
 
 console.log("hello");
