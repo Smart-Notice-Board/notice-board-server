@@ -22,10 +22,6 @@ function fetchUser(uname,passw,cb) {
 
 }
 
-function authenticate(){
-
-}
-
 
 module.exports = {
     getUser: fetchUser
