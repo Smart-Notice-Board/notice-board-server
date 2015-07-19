@@ -7,9 +7,11 @@ var collegeinfo = require('../models/colleges');
 var _ = require('lodash');
 
 
+/*
 router.get('/',function(req,res,next){
     res.render('college');
 });
+*/
 
 router.get('/college',function(req,res,next){
     //console.log(req.body)

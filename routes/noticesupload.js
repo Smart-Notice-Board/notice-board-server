@@ -9,7 +9,7 @@ var moment = require('moment');
 var notice = require('../models/notice');
 
 router.get('/',function(req,res,next){
-	console.log("hi");
+	console.log("hi",req.decoded);
 	res.render('noticeupload');
 
 });
@@ -17,7 +17,7 @@ router.get('/',function(req,res,next){
 router.post('/',function (req,res,next) {
 
 console.log("hello");
-console.log(req.body);
+console.log(req.decoded);
 
 	/*if (!req.cookies.loggedIn) {
 		console.log(req.files);

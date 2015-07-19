@@ -12,7 +12,7 @@ function fetchUser(uname,passw,cb) {
    var query = "Select * from USER where username = ? and password = ?";
 
     connection.query(query,[uname,passw],function(err,rows){
-       if(err){console.log("feew");
+       if(err){//console.log("feew");
              cb(err,null);
        } else if(!rows[0]) {
            cb("User not found",null);

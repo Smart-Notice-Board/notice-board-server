@@ -20,6 +20,7 @@ var noticesupload = require('./routes/noticesupload');
 
 var app = express();
 
+app.set('superSecret', cfg.secret);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -39,12 +40,39 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.bodyParser());
 
-app.use('/secure',expressJwt({secret:'secret'}));
+//api not protected with jwt
+app.use('/collegedet',collegedet);
+app.use('/notices',notices);
+
 app.use('/', routes);
 app.use('/login',login);
 //app.use('/users', users);
-app.use('/collegedet',collegedet);
-app.use('/notices',notices);
+app.use(function(req, res, next) {
+
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  if (token) {
+    jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+
+  }
+});
 app.use('/noticesupload',noticesupload);
 //app.use('/logout', logout);
 // catch 404 and forward to error handler

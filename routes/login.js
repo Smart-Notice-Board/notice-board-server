@@ -27,8 +27,18 @@ router.post('/', function (req, res, next) {
                 res.json({error: err});
             }
             else{
-            res.redirect('/noticesupload');
-                console.log('a',User);
+                var token = jwt.sign(User, "RAGHAV", {
+                    expiresInMinutes: 1440 // expires in 24 hours
+                });
+
+                // return the information including token as JSON
+                /*res.json({
+                    success: true,
+                    message: 'Enjoy your token!',
+                    token: token
+                });*/
+            res.redirect('/noticesupload?token='+token);
+                //console.log('a',User);
             }
 
         });
