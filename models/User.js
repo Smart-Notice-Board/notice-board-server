@@ -13,11 +13,13 @@ function fetchUser(uname,passw,cb) {
 
     connection.query(query,[uname,passw],function(err,rows){
        if(err){console.log("feew");
-             cb(err);
-       } else {
-           console.log("frfrrifjr");
-           cb(rows[0]);
-
+             cb(err,null);
+       } else if(!rows[0]) {
+           cb("User not found",null);
+       }
+        else{
+           //console.log("frfrrifjr");
+           cb(null,rows[0]);
        }
     });
 

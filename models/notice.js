@@ -25,7 +25,7 @@ function storeNotices(param,cb){
 
 }
 module.exports = {
-    fetchAllNotices:fetchNotices,
+    fetchAllNotices:fetchNotices
     //storeNotices:storeNotices
 
 }

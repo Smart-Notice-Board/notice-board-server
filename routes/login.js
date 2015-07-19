@@ -21,12 +21,13 @@ router.post('/', function (req, res, next) {
             next(err);
         }
         passw = key.toString('hex');
-        User.getUser(uname, passw, function (User, err) {
+        User.getUser(uname, passw, function (err,User) {
             if (err) {
+                //console.log(User)
                 res.json({error: err});
             }
             else{
-            //res.redirect('/noticesupload');
+            res.redirect('/noticesupload');
                 console.log('a',User);
             }
 
