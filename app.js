@@ -33,16 +33,12 @@ app.use(multer({
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.bodyParser());
-
-app.use('/login',login);
-app.use('/collegedet',collegedet);
-app.use('/notices',notices);
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -57,6 +53,8 @@ app.use(function(req, res, next) {
       } else {
         // if everything is good, save to request for use in other routes
         req.decoded = decoded;
+        console.log("decoded");
+        //console.log(next());
         next();
       }
     });
@@ -71,13 +69,14 @@ app.use(function(req, res, next) {
     });
 
   }
-});
+});*/
 
 app.use('/', routes);
+app.use('/login',login);
 app.use('/users', users);
+app.use('/collegedet',collegedet);
+app.use('/notices',notices);
 app.use('/noticesupload',noticesupload);
-
-
 //app.use('/logout', logout);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

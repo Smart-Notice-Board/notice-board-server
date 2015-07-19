@@ -7,7 +7,7 @@ var User = require('../models/User')
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 router.get('/', function (req, res, next) {
-    res.render('login');
+    res.render('index');
 });
 
 
@@ -25,15 +25,8 @@ router.post('/', function (req, res, next) {
             if (err) {
                 res.json({error: err});
             }
-            if(!User) {
-                    res.json({ success: false, message: 'Authentication failed. User not found.' });
-            }
             else{
-                 var token = jwt.sign(User, "RAGHAV", {
-                    expiresInMinutes: 1440 // expires in 24 hours
-                });
-                        res.redirect('/noticesupload'+'?token='+token);
-
+            res.redirect('/noticesupload');
             }
 
         });

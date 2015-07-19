@@ -10,13 +10,11 @@ var notice = require('../models/notice');
 
 router.get('/',function(req,res,next){
 	console.log("hi");
-		res.render('noticeupload');
-	next();
+	res.render('noticeupload');
 
 });
 
-//not going here
-router.post('/', function (req,res,next) {
+router.post('/',function (req,res,next) {
 
 console.log("hello");
 console.log(req.body);
@@ -35,6 +33,7 @@ console.log(req.body);
 	} else {
 		res.redirect('/login');
 	}*/
+
 
 
 });

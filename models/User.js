@@ -22,7 +22,7 @@ function fetchUser(uname,passw,cb) {
 
 }
 
-/*
+
 function insToken(token,cb){
     var query = "Update USER set token = ?";
 
@@ -35,9 +35,9 @@ function insToken(token,cb){
         }
     });
 }
-*/
+
 module.exports = {
     getUser: fetchUser
-    //insertToken:insToken
+   // insertToken:insToken
 
 }

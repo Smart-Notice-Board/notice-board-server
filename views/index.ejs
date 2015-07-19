@@ -1,5 +1,10 @@
-extends layout.ejs
-
-block content
-  h1= title
-  p Welcome to #{title}
+<html>
+<head></head>
+<body>
+<form action="/login" method="post">
+  <input type="text" name="username"/>
+  <input type="password" name="password"/>
+  <input class="submit" type="submit"/>
+</form>
+</body>
+</html>
