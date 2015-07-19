@@ -12,6 +12,7 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/', function (req, res, next) {
+    console.log(req.body);
     var uname = req.body.username
     var passw = req.body.password
     crypto.pbkdf2(passw, 'Salt', 100, 30, function (err, key) {
@@ -21,12 +22,12 @@ router.post('/', function (req, res, next) {
         }
         passw = key.toString('hex');
         User.getUser(uname, passw, function (User, err) {
-
             if (err) {
                 res.json({error: err});
             }
             else{
-            res.redirect('/noticesupload');
+            //res.redirect('/noticesupload');
+                console.log('a',User);
             }
 
         });

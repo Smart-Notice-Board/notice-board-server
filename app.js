@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
 var cfg = require('./config');
 
 var routes = require('./routes/index');
@@ -23,11 +24,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.set('superSecret', cfg.secret);
 
 app.use(multer({
   dest: './public/uploads/'
-}))
+}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,42 +38,11 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.bodyParser());
-/*app.use(function(req, res, next) {
 
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, "RAGHAV", function(err, decoded) {
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });
-      } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;
-        console.log("decoded");
-        //console.log(next());
-        next();
-      }
-    });
-
-  } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).send({
-      success: false,
-      message: 'No token provided.'
-    });
-
-  }
-});*/
-
+app.use('/secure',expressJwt({secret:'secret'}));
 app.use('/', routes);
 app.use('/login',login);
-app.use('/users', users);
+//app.use('/users', users);
 app.use('/collegedet',collegedet);
 app.use('/notices',notices);
 app.use('/noticesupload',noticesupload);

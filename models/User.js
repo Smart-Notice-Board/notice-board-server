@@ -12,9 +12,10 @@ function fetchUser(uname,passw,cb) {
    var query = "Select * from USER where username = ? and password = ?";
 
     connection.query(query,[uname,passw],function(err,rows){
-       if(err){
+       if(err){console.log("feew");
              cb(err);
        } else {
+           console.log("frfrrifjr");
            cb(rows[0]);
 
        }

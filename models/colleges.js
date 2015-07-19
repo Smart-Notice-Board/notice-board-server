@@ -13,13 +13,13 @@ function fetchColleges(cb) {
     connection.query(query,function(err,rows){
         if(err){
             console.log("Hi")
-            cb(err);
+            cb(err,null);
         } else {
-            connection.end();
+            //connection.end();
             // var user = new User(rows[0]);
             //console.log("hi");
 
-            cb(rows);
+            cb(null,rows);
 
         }
     });
