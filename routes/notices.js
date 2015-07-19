@@ -16,7 +16,7 @@ router.post('/',function(req,res,next){
 router.post('/deptnotices',function(req,res,next){
     //console.log("hi");
     console.log(req.body);
-    notice.fetchAllNotices(req.body,function(notice,err){
+    notice.fetchAllNotices(req.body,function(err,notice){
         if(err){
             res.json({error:err});
         }

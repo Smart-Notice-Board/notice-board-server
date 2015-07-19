@@ -8,14 +8,14 @@ var connection = mysql.createConnection(cfg.mysql);
 
 function fetchNotices(param,cb){
 
-    var query = "Select * from NOTICE where college_name = ? and department =? and Semester = ? ";
+    var query = "Select * from NOTICE where college_name = ? and department =? and Semester = ?";
 
     connection.query(query,[param.college,param.department,param.semester],function(err,rows){
         if(err){
-            cb(err);
+            cb(err,null);
         }
         else{
-            cb(rows);
+            cb(null,rows);
         }
     });
 
@@ -26,6 +26,6 @@ function storeNotices(param,cb){
 }
 module.exports = {
     fetchAllNotices:fetchNotices,
-    storeNotices:storeNotices
+    //storeNotices:storeNotices
 
 }
