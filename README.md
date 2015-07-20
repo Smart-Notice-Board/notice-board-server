@@ -1,7 +1,7 @@
 # Smart-notice-board
 Nodejs Server for the digital notice board
 
-College Details API (GET)=> /collegeDet
+1) College Details API (GET)=> /collegeDet
 
 request => none
 
@@ -35,7 +35,7 @@ response =>
     
     
     
-Notices API (POST) => /notices
+2) Notices API (POST) => /notices
 
 request => {college,department,semester}
 
