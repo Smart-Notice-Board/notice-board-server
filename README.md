@@ -35,6 +35,14 @@ response =>
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
 2) Notices API (POST) => /notices
 
 request => {college,department,semester}
@@ -53,3 +61,16 @@ response => {"result": [
       "stime": "10/07/2015 20:20",
       "etime": "10/07/2015 23:20"
     }}
+
+
+
+
+
+
+
+3) Login API (POST) => /login
+
+request => {username,password}
+
+
+response =>  {success(true or false),token}
