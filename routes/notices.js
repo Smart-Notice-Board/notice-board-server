@@ -13,7 +13,7 @@ router.post('/',function(req,res,next){
 });
 */
 
-router.post('/deptnotices',function(req,res,next){
+router.post('/',function(req,res,next){
     //console.log("hi");
     console.log(req.body);
     notice.fetchAllNotices(req.body,function(err,notice){

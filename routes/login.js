@@ -32,12 +32,11 @@ router.post('/', function (req, res, next) {
                 });
 
                 // return the information including token as JSON
-                /*res.json({
+                res.json({
                     success: true,
                     message: 'Enjoy your token!',
                     token: token
-                });*/
-            res.redirect('/noticesupload?token='+token);
+                });
                 //console.log('a',User);
             }
 
