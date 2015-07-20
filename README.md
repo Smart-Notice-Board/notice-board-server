@@ -3,8 +3,8 @@ Nodejs Server for the digital notice board
 
 College Details API => /collegeDet
 
-request : none
-response : 
+  request : none
+  response : 
 "result":
 [{
       "name": "rvce",
