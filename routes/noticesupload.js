@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var moment = require('moment');
-
+var path = require('path');
 var notice = require('../models/notice');
 
 /*router.get('/',function(req,res,next){
@@ -16,30 +16,49 @@ var notice = require('../models/notice');
 
 router.post('/',function (req,res,next) {
 
-console.log("hello");
-console.log(req.decoded);
 
-	/*if (!req.cookies.loggedIn) {
-		console.log(req.files);
-    	oldPath = "public/uploads";
-		if(req.body.type === 'image'){
-			newPath = "public/uploads/images"
-			fs.rename(oldPath,newPath,function(err,f){
-			    if(err){
+	if(req.query.token){
+		old_path = "public/uploads/"+req.files.fil.name;
 
-			    }
+		//uploading images or videos
+		if(req.body.type == "image" || req.body.type == "video") {
+			new_path = "public/uploads/" + req.body.type +"/"+ req.files.fil.originalname;
+			fs.rename(old_path,new_path,function(err){
+				if(err){
+					res.json({err:err});
+				}
+				else{
+					console.log("hell yeah");
+					notice.storeNotices(req,function(err,notice){
+						if(err){
+							res.json({msg:err});
+						}
+						else{
+							res.json({msg:"Notice saved successfully"});
+						}
+					});
+				}
 			});
 		}
-	} else {
-		res.redirect('/login');
-	}*/
+
+		else{
+			//uploading only text notices
+			notice.storeNotices(req,function(err,notice){
+				if(err){
+					res.json({err:err});
+				}
+				else if(notice){
+					res.json({msg:"Notice saved successfully"});
+				}
+				else{
+					res.json({msg:"Something wrong happend"});
+				}
+			});
+		}
 
 
+	}
 
 });
 
-module.exports =router;
-
-
-
-
+module.exports = router;

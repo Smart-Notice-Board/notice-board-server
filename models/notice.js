@@ -21,11 +21,21 @@ function fetchNotices(param,cb){
 
 }
 function storeNotices(param,cb){
-
-
+console.log(param);
+    var query = "Insert into NOTICE values (?,?,?,?,?,?,?,?,?,?,?) "
+    var val = ["2",param.body.description,param.body.type,param.body.priority,param.decoded.username,param.body.semester,param.files.fil.originalname,param.decoded.CollegeName,param.decoded.department,param.body.stime,param.body.etime];
+    console.log("Values",val);
+    connection.query(query,val,function(err,rows){
+        if(err){
+            cb(err,null);
+        }
+        else{
+            cb(rows[0],null);
+        }
+    });
 }
 module.exports = {
-    fetchAllNotices:fetchNotices
-    //storeNotices:storeNotices
+    fetchAllNotices:fetchNotices,
+    storeNotices:storeNotices
 
 }

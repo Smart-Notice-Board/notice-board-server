@@ -6,9 +6,9 @@ var router = express.Router();
 var User = require('../models/User')
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
-router.get('/', function (req, res, next) {
+/*router.get('/', function (req, res, next) {
     res.render('index');
-});
+});*/
 
 
 router.post('/', function (req, res, next) {
@@ -34,7 +34,6 @@ router.post('/', function (req, res, next) {
                 // return the information including token as JSON
                 res.json({
                     success: true,
-                    message: 'Enjoy your token!',
                     token: token
                 });
                 //console.log('a',User);
