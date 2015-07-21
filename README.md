@@ -1,7 +1,7 @@
 # Smart-notice-board
 Nodejs Server for the digital notice board
 
-1) College Details API (GET)=> /collegeDet
+> ##College Details API (GET)=> /collegeDet
 
 request => none
 
@@ -43,7 +43,7 @@ response =>
     
     
     
-2) Notices API (POST) => /notices
+> ##Notices API (POST) => /notices
 
 request => {college,department,semester}
 
@@ -68,7 +68,7 @@ response => {"result": [
 
 
 
-3) Login API (POST) => /login
+> ##Login API (POST) => /login
 
 request => {username,password}
 
@@ -79,7 +79,7 @@ response =>  {success(true or false),token}
 
 
 
-4) Notice upload API (POST) => /noticesupload?token=
+> ##Notice upload API (POST) => /noticesupload?token=
 
 request   =>   if image or video:
                   {type,description,priority,semester,stime,etime,fil(file)}
