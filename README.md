@@ -74,3 +74,19 @@ request => {username,password}
 
 
 response =>  {success(true or false),token}
+
+
+
+
+
+4) Notice upload API (POST) => /noticesupload?token=
+
+request   =>   if image or video:
+                  {type,description,priority,semester,stime,etime,fil(file)}
+                else
+                   {{type,description,priority,semester,stime,etime}
+
+
+
+
+response   =>   {msg}
