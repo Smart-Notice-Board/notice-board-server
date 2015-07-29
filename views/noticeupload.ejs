@@ -141,7 +141,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="row"><div class="col "><button class="btn waves-effect waves-light mleft" type="submit">Submit
+                  <div class="row"><div class="col "><button class="btn waves-effect waves-light mleft" type="submit" id="submitButton"  name="submitButton" value="Submit">Submit
                         </button></div></div>
 
                </form>
@@ -182,9 +182,6 @@
 
    $("#formData").submit(function(event){
       event.preventDefault();
-      var data = new FormData();
-      data.append( 'file', $('#file')[0].files[0] );
-      console.log(data);
       //console.log(event.target);
       var $form = $( this ),
               url = $form.attr( 'action' );
