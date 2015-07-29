@@ -8,11 +8,10 @@ var moment = require('moment');
 var path = require('path');
 var notice = require('../models/notice');
 
-/*router.get('/',function(req,res,next){
-	console.log("hi",req.decoded);
+router.get('/',function(req,res,next){
 	res.render('noticeupload');
 
-});*/
+});
 
 router.post('/',function (req,res,next) {
 console.log(req.body);
