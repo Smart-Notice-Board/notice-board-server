@@ -2,194 +2,230 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 <link rel="stylesheet" href="../stylesheets/lolliclock.css">
 <style>
-   .ht {
-      height: 200px;
-      z-index: -1;
-   }
+    .ht {
+        height: 200px;
+        z-index: -1;
+    }
 
-   .martop {
-      margin-top: -10%;
-   }
+    .martop {
+        margin-top: -10%;
+    }
 
-   .color-corrector {
-      background-color: #ffffff;
-   }
-   .marleft{
-      margin-left: 1.8%;
-   }
-   .marbottom{
-      margin-top: 19%;
-   }
-   .marright{
-      margin-right: 50%;
-   }
-   .mleft{
-      margin-left: 300%;
-   }
-   .mtop{
-      margin-top: 2.5%;
-   }
-   .btleft{
-      margin-left: 179%;
-   }
-   .bttop{
-      margin-top: 10%;
-   }
+    .color-corrector {
+        background-color: #ffffff;
+    }
+
+    .marleft {
+        margin-left: 1.8%;
+    }
+
+    .marbottom {
+        margin-top: 19%;
+    }
+
+    .marright {
+        margin-right: 50%;
+    }
+
+    .mleft {
+        margin-left: 300%;
+    }
+
+    .mtop {
+        margin-top: 2.5%;
+    }
+
+    .btleft {
+        margin-left: 179%;
+    }
+
+    .bttop {
+        margin-top: 10%;
+    }
 
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><style type="text/css"></style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style type="text/css"></style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 <script src="../stylesheets/lolliclock.js"></script>
 </head>
 
 <body>
 <nav class="index-banner ht">
-   <div class="nav-wrapper">
-      <ul id="nav-mobile" class="brand-logo left hide-on-med-and-down">
-         <li class="marleft marbottom">Notice Upload</li>
-      </ul>
-      <div class="row"><div class="col s6"><button class="btn waves-effect waves-light btleft bttop" type="button" onclick="logout()">Logout
-            </button></div></div>
-   </div>
+    <div class="nav-wrapper">
+        <ul id="nav-mobile" class="brand-logo left hide-on-med-and-down">
+            <li class="marleft marbottom">Notice Upload</li>
+        </ul>
+        <div class="row">
+            <div class="col s6">
+                <button class="btn waves-effect waves-light btleft bttop" type="button" onclick="logout()">Logout
+                </button>
+            </div>
+        </div>
+    </div>
 
 </nav>
 <div class="container z-depth-5 color-corrector">
-   <div class="col s12 m2">
-      <div class="row martop">
-         <div class="col s12 m12">
-            <div >
-               <form class="col s12" action="/noticesupload" method="post" enctype="multipart/form-data" id="formData">
-                  <div class="row">
-                     <div class="row">
-                        <div class="col s12">
-                           <div class="input-field ">
-                              <div class="col s12">
-                                 <textarea id="textarea3" class="materialize-textarea" name="semester"></textarea>
-                                 <label for="textarea3">Semester</label>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="input-field col s12">
-                        <select class="select" name="type" id="type">
-                           <option value="image" id="image">Image</option>
-                           <option value="video" id="video">Video</option>
-                           <option value="text" id="text">Text</option>
-                        </select>
-                        <label class="active mtop">Select Notice Type</label>
-                     </div>
-                     <div class="row">
-                        <div class="col s12">
-                           <div class="input-field col s6">
-                              <input type="date" class=" datepicker" placeholder="start date" aria-expanded="false" name="startdate" id="sdate">
-                           </div>
-                           <div class="input-field col s6">
-                              <input type="date" class="offset-s2 datepicker" placeholder="end date" aria-expanded="false" name="enddate" id="edate">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col s12">
-                           <div class="col s6"><input id="pick-a-start-time" placeholder="start time" name="stime"/></div>
+    <div class="col s12 m2">
+        <div class="row martop">
+            <div class="col s12 m12">
+                <div>
+                    <form class="col s12" action="/noticesupload" method="post" enctype="multipart/form-data"
+                          id="formData">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field ">
+                                        <div class="col s12">
+                                            <textarea id="textarea3" class="materialize-textarea"
+                                                      name="semester"></textarea>
+                                            <label for="textarea3">Semester</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <select class="select" name="type" id="type">
+                                    <option value="image" id="image">Image</option>
+                                    <option value="video" id="video">Video</option>
+                                    <option value="text" id="text">Text</option>
+                                </select>
+                                <label class="active mtop">Select Notice Type</label>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field col s6">
+                                        <input type="date" class=" datepicker" placeholder="start date"
+                                               aria-expanded="false" name="startdate" id="sdate">
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="date" class="offset-s2 datepicker" placeholder="end date"
+                                               aria-expanded="false" name="enddate" id="edate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="col s6"><input id="pick-a-start-time" placeholder="start time"
+                                                               name="stime"/></div>
 
-                           <div class="col s6"><input id="pick-a-end-time" placeholder="end time" name="etime"/></div>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col s12">
-                           <div class="input-field ">
-                              <div class="col s12">
-                                 <textarea id="textarea1" class="materialize-textarea" name="description"></textarea>
-                                 <label for="textarea1">Description</label>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="input-field col s12">
-                           <div class="col s12">
-                              <select class="select" name="priority" id="priority">
-                                 <option value="1" id="1">1</option>
-                                 <option value="2" id="2">2</option>
-                                 <option value="3" id="3">3</option>
-                              </select>
-                              <label class="active marleft">Select Priority</label>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="row" id="filetype">
-                        <div class="col s10 offset-s2">
-                           <div class="file-field input-field col s10">
+                                    <div class="col s6"><input id="pick-a-end-time" placeholder="end time"
+                                                               name="etime"/></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field ">
+                                        <div class="col s12">
+                                            <textarea id="textarea1" class="materialize-textarea"
+                                                      name="description"></textarea>
+                                            <label for="textarea1">Description</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <div class="col s12">
+                                        <select class="select" name="priority" id="priority">
+                                            <option value="1" id="1">1</option>
+                                            <option value="2" id="2">2</option>
+                                            <option value="3" id="3">3</option>
+                                        </select>
+                                        <label class="active marleft">Select Priority</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="filetype">
+                                <div class="col s10 offset-s2">
+                                    <div class="file-field input-field col s10">
 
-                              <input class="file-path validate" type="text"/>
-                              <div class="btn">
-                                 <span>File</span>
-                                 <input type="file" name="file"/>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="row" id="notice">
-                        <div class="row col s12">
-                           <div class="col s12">
-                              <div class="input-field ">
-                                 <textarea id="textarea1" class="materialize-textarea" name="notice"></textarea>
-                                 <label for="textarea1">Notice</label>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row"><div class="col "><button class="btn waves-effect waves-light mleft" type="submit" id="submitButton"  name="submitButton" value="Submit">Submit
-                        </button></div></div>
+                                        <input class="file-path validate" type="text"/>
 
-               </form>
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input type="file" name="file"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="notice">
+                                <div class="row col s12">
+                                    <div class="col s12">
+                                        <div class="input-field ">
+                                            <textarea id="textarea1" class="materialize-textarea"
+                                                      name="notice"></textarea>
+                                            <label for="textarea1">Notice</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col ">
+                                <button class="btn waves-effect waves-light mleft" type="submit" id="submitButton"
+                                        name="submitButton" value="Submit">Submit
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
-   console.log("sagey")
-   $(document).ready(function() {
-      $('select').material_select();
-   });
-   $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15 // Creates a dropdown of 15 years to control year
-   });
+    console.log("sagey")
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
 
-   $('select[name="type"]').change(function(){
+    $('select[name="type"]').change(function () {
 
-      if ($(this).val() == "image" || $(this).val() == "video") {
-         $('#filetype').show();
-         $('#notice').hide();
-      }
-      else{
-         $('#filetype').hide();
-         $('#notice').show();
-      }
-   });
-   $('#pick-a-start-time').lolliclock({autoclose:true});
-   $('#pick-a-end-time').lolliclock({autoclose:true});
+        if ($(this).val() == "image" || $(this).val() == "video") {
+            $('#filetype').show();
+            $('#notice').hide();
+        }
+        else {
+            $('#filetype').hide();
+            $('#notice').show();
+        }
+    });
+    $('#pick-a-start-time').lolliclock({autoclose: true});
+    $('#pick-a-end-time').lolliclock({autoclose: true});
 
-   function logout(){
-      window.location = "http://localhost:3000"
-      window.localStorage.removeItem("token");
-   }
+    function logout() {
+        window.location = "http://localhost:3000"
+        window.localStorage.removeItem("token");
+    }
 
-   $("#formData").submit(function(event){
-      event.preventDefault();
-      //console.log(event.target);
-      var $form = $( this ),
-              url = $form.attr( 'action' );
-      token = window.localStorage.getItem("token");
-      url = url + "?token="+token;
-      var posting = $.post( url, { type: $('#type').val(),sdate: $('#sdate').val(), edate: $('#edate').val(), stime: $('#pick-a-start-time').val(),etime: $('#pick-a-end-time').val(),description: $('#textarea1').val(),priority: $('#priority').val(),notice: $('#textarea2').val(),semester: $('#textarea3').val()} );
+    $("#formData").submit(function (event) {
+        event.preventDefault();
+        //console.log(event.target);
+        var $form = $(this),
+                url = $form.attr('action');
+        token = window.localStorage.getItem("token");
+        url = url + "?token=" + token;
+        var posting = $.post(url, {
+            type: $('#type').val(),
+            sdate: $('#sdate').val(),
+            edate: $('#edate').val(),
+            stime: $('#pick-a-start-time').val(),
+            etime: $('#pick-a-end-time').val(),
+            description: $('#textarea1').val(),
+            priority: $('#priority').val(),
+            notice: $('#textarea2').val(),
+            semester: $('#textarea3').val()
+        });
 
-   });
+    });
 </script>
 </body>
 </html>

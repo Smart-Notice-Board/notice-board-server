@@ -1,107 +1,116 @@
-<html><head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-  <style>
-    .ht {
-      height: 100px;
-      z-index: -1;
-    }
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <style>
+        .ht {
+            height: 100px;
+            z-index: -1;
+        }
 
-    .martop {
-      margin-top: 10%;
-    }
+        .martop {
+            margin-top: 10%;
+        }
 
-    .color-corrector {
-      background-color: #ffffff;
-    }
+        .color-corrector {
+            background-color: #ffffff;
+        }
 
-    .marleft {
-      margin-left: 1.8%;
-    }
+        .marleft {
+            margin-left: 1.8%;
+        }
 
-    .marbottom {
-      margin-top: 19%;
-    }
+        .marbottom {
+            margin-top: 19%;
+        }
 
-    .marright {
-      margin-right: 50%;
-    }
+        .marright {
+            margin-right: 50%;
+        }
 
-    .mleft {
-      margin-left: 37%;
-    }
+        .mleft {
+            margin-left: 37%;
+        }
 
-    .mtop {
-      margin-top: -3%;
-    }
+        .mtop {
+            margin-top: -3%;
+        }
 
-  </style>
-  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-  </head>
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+</head>
 <body>
 <nav class="index-banner ht">
-  <div class="nav-wrapper">
-    <ul id="nav-mobile" class="brand-logo mleft mtop hide-on-med-and-down">
-      <li class="marleft marbottom">Smart Notice Board</li>
-    </ul>
-  </div>
+    <div class="nav-wrapper">
+        <ul id="nav-mobile" class="brand-logo mleft mtop hide-on-med-and-down">
+            <li class="marleft marbottom">Smart Notice Board</li>
+        </ul>
+    </div>
 </nav>
 <div class="col s12 m2">
-  <div class="row martop">
-    <div class="col s12 m12">
-      <div>
-        <form class="col s12" method="post" action="/login" id="loginform">
-          <div class="row">
-            <div class="col s12">
-              <div class="input-field ">
-                <div class="col s12">
-                  <input id="username" class="validate" name="username" placeholder="username" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12">
-              <div class="input-field ">
-                <div class="col s12">
-                  <input id="password" class="validate" name="password" placeholder="password" type="password">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row"><div class="col s12"><button class="btn waves-effect waves-light mleft" type="submit" name="submitButton" value="Submit">Submit
-              </button></div></div>
-        </form>
+    <div class="row martop">
+        <div class="col s12 m12">
+            <div>
+                <form class="col s12" method="post" action="/login" id="loginform">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field ">
+                                <div class="col s12">
+                                    <input id="username" class="validate" name="username" placeholder="username"
+                                           type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field ">
+                                <div class="col s12">
+                                    <input id="password" class="validate" name="password" placeholder="password"
+                                           type="password">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="btn waves-effect waves-light mleft" type="submit" name="submitButton"
+                                    value="Submit">Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
 <script type="text/javascript">
-  $('#loginform').submit(function (event) {
-    event.preventDefault();
-    var credentials = {
-      username: $('#username').val(),
-      password: $('#password').val()
-    };
-    $.post("http://localhost:3000/login", credentials, function (auth) {
-      console.log(auth.token);
-      window.localStorage.setItem('token', auth.token);
-      $.ajax({
-        type: "GET",
-        url: "http://localhost:3000/noticesupload",
-        beforeSend: function (xhr) {
-          token = window.localStorage.getItem("token");
-          console.log(token);
-          xhr.setRequestHeader("x-access-token", token);
-        },
-        success: function () {
-          window.location = "http://localhost:3000/noticesupload" + "?token=" + token;
-        }
-      });
+    $('#loginform').submit(function (event) {
+        event.preventDefault();
+        var credentials = {
+            username: $('#username').val(),
+            password: $('#password').val()
+        };
+        $.post("http://localhost:3000/login", credentials, function (auth) {
+            console.log(auth.token);
+            window.localStorage.setItem('token', auth.token);
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3000/noticesupload",
+                beforeSend: function (xhr) {
+                    token = window.localStorage.getItem("token");
+                    console.log(token);
+                    xhr.setRequestHeader("x-access-token", token);
+                },
+                success: function () {
+                    window.location = "http://localhost:3000/noticesupload" + "?token=" + token;
+                }
+            });
+        });
     });
-  });
 </script>
-</body></html>
+</body>
+</html>

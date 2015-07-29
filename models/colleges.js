@@ -10,16 +10,16 @@ var connection = mysql.createConnection(cfg.mysql);
 function fetchColleges(cb) {
     var query = "Select * from COLLEGE_DET";
 
-    connection.query(query,function(err,rows){
-        if(err){
+    connection.query(query, function (err, rows) {
+        if (err) {
             console.log("Hi")
-            cb(err,null);
+            cb(err, null);
         } else {
             //connection.end();
             // var user = new User(rows[0]);
             //console.log("hi");
 
-            cb(null,rows);
+            cb(null, rows);
 
         }
     });
