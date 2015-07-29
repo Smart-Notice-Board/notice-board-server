@@ -202,8 +202,10 @@
     $('#pick-a-end-time').lolliclock({autoclose: true});
 
     function logout() {
-        window.location = "http://localhost:3000"
         window.localStorage.removeItem("token");
+        window.location = "http://localhost:3000"
+
+
     }
 
     $("#formData").submit(function (event) {
