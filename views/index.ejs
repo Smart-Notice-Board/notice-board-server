@@ -98,19 +98,26 @@
             password: $('#password').val()
         };
         $.post("http://localhost:3000/login", credentials, function (auth) {
-            window.localStorage.setItem('token', auth.token);
-            $.ajax({
-                type: "GET",
-                url: "http://localhost:3000/noticesupload",
-                beforeSend: function (xhr) {
-                    token = window.localStorage.getItem("token");
-                    console.log(token);
-                    xhr.setRequestHeader("x-access-token", token);
-                },
-                success: function () {
-                    window.location = "http://localhost:3000/noticesupload" + "?token=" + token;
-                }
-            });
+            if(auth.success) {
+                window.localStorage.setItem('token', auth.token);
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:3000/noticesupload",
+                    beforeSend: function (xhr) {
+                        token = window.localStorage.getItem("token");
+                        console.log(token);
+                        xhr.setRequestHeader("x-access-token", token);
+                    },
+                    success: function () {
+                        window.location = "http://localhost:3000/noticesupload" + "?token=" + token;
+                    }
+                });
+            }
+            else{
+                Materialize.toast('Authentication failed!', 2000);
+                document.getElementById('username').value = "";
+                document.getElementById('password').value = "";
+            }
         });
     });
 </script>
