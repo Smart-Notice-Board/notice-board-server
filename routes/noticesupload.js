@@ -14,19 +14,20 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    console.log(req.body);
+   // console.log(req.body);
     if (req.query.token || req.headers['x-access-token']) {
 
         //uploading images or videos
         if (req.body.type == "image" || req.body.type == "video") {
+            console.log("HI");
             old_path = "public/uploads/" + req.files.fil.name;
             new_path = "public/uploads/" + req.body.type + "/" + req.files.fil.originalname;
+            console.log(old_path);
             fs.rename(old_path, new_path, function (err) {
                 if (err) {
                     res.json({err: err});
                 }
                 else {
-                    console.log("hell yeah");
                     notice.storeNotices(req, function (err, notice) {
                         if (err) {
                             res.json({msg: err});
