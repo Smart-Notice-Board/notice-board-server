@@ -22,7 +22,7 @@ function fetchNotices(param, cb) {
 }
 function storeNotices(param, cb) {
 
-    var query = "Insert into NOTICE values (?,?,?,?,?,?,?,?,?,?,?) "
+    var query = "Insert into NOTICE values (?,?,?,?,?,?,?,?,?,?,?) ";
     if (param.body.type == "image" || param.body.type == "video") {
         var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.body.semester, param.files.fil.originalname, param.decoded.CollegeName, param.decoded.department, param.body.stime, param.body.etime];
     }
@@ -36,7 +36,7 @@ function storeNotices(param, cb) {
             cb(err, null);
         }
         else {
-            cb(rows[0], null);
+            cb(rows, null);
         }
     });
 }
