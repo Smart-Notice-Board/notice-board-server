@@ -210,20 +210,19 @@
 
     $("#formData").submit(function (event) {
         event.preventDefault();
-        //console.log(event.target);
         var $form = $(this),
                 url = $form.attr('action');
         token = window.localStorage.getItem("token");
         url = url + "?token=" + token;
         var posting = $.ajax({
-            url:url,
-            type:"POST",
-            data:new FormData(this),
-            success: function(){
+            url: url,
+            type: "POST",
+            data: new FormData(this),
+            success: function () {
                 alert("uploaded");
             },
-            contentType:false,
-            processData:false
+            contentType: false,
+            processData: false
         });
 
     });
