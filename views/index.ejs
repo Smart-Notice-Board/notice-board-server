@@ -34,6 +34,9 @@
         .mtop {
             margin-top: -3%;
         }
+        .mmleft{
+            margin-left: 43%;
+        }
 
     </style>
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
@@ -74,8 +77,8 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <button class="btn waves-effect waves-light mleft" type="submit" name="submitButton"
-                                    value="Submit">Submit
+                            <button class="btn waves-effect waves-light mleft mmleft" type="submit" name="submitButton"
+                                    value="Submit">SignIn
                             </button>
                         </div>
                     </div>
@@ -95,7 +98,6 @@
             password: $('#password').val()
         };
         $.post("http://localhost:3000/login", credentials, function (auth) {
-            console.log(auth.token);
             window.localStorage.setItem('token', auth.token);
             $.ajax({
                 type: "GET",
