@@ -16,7 +16,6 @@ var collegedet = require('./routes/collegeDet');
 var notices = require('./routes/notices');
 var noticesupload = require('./routes/noticesupload');
 
-//var logout = require('./routes/logout');
 
 var app = express();
 

@@ -34,7 +34,8 @@
         .mtop {
             margin-top: -3%;
         }
-        .mmleft{
+
+        .mmleft {
             margin-left: 43%;
         }
 
@@ -98,7 +99,7 @@
             password: $('#password').val()
         };
         $.post("http://localhost:3000/login", credentials, function (auth) {
-            if(auth.success) {
+            if (auth.success) {
                 window.localStorage.setItem('token', auth.token);
                 $.ajax({
                     type: "GET",
@@ -113,7 +114,7 @@
                     }
                 });
             }
-            else{
+            else {
                 Materialize.toast('Authentication failed!', 2000);
                 document.getElementById('username').value = "";
                 document.getElementById('password').value = "";
