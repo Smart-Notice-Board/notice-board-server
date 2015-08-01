@@ -22,7 +22,7 @@ router.post('/', function (req, res, next) {
             console.log("HI");
             old_path = "public/uploads/" + req.files.fil.name;
             new_path = "public/uploads/" + req.body.type + "/" + req.files.fil.originalname;
-            console.log(old_path);
+            console.log(new_path);
             fs.rename(old_path, new_path, function (err) {
                 if (err) {
                     res.json({err: err});
@@ -33,7 +33,7 @@ router.post('/', function (req, res, next) {
                             res.json({msg: err});
                         }
                         else {
-                            console.log("Notice", notice)
+                            //console.log("Notice", notice)
                             res.json({msg: "Notice saved successfully"});
                         }
                     });

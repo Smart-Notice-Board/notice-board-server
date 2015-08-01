@@ -18,6 +18,8 @@ var noticesupload = require('./routes/noticesupload');
 
 
 var app = express();
+var port =  process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var address =  process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 
 app.set('superSecret', cfg.secret);
 // view engine setup
@@ -106,5 +108,6 @@ app.use(function (err, req, res, next) {
     });
 });
 
+app.listen(port, address);
 
 module.exports = app;
