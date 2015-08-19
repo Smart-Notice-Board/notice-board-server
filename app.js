@@ -8,6 +8,7 @@ var multer = require('multer');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var cfg = require('./config');
+var cors = require('cors');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -18,10 +19,12 @@ var noticesupload = require('./routes/noticesupload');
 
 
 var app = express();
-var port =  process.env.OPENSHIFT_NODEJS_PORT || 3000;
-var address =  process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+
+app.use(cors());
 
 app.set('superSecret', cfg.secret);
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -32,7 +35,7 @@ app.use(multer({
 }));
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -47,9 +50,9 @@ app.use('/notices', notices);
 
 app.use('/', routes);
 app.use('/login', login);
-//app.use('/users', users);
-app.use(function (req, res, next) {
 
+
+app.use(function (req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     if (token) {
@@ -108,6 +111,5 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.listen(port, address);
 
 module.exports = app;

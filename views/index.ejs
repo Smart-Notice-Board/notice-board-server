@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../stylesheets/materialize.min.css">
     <style>
         .ht {
             height: 100px;
@@ -40,8 +40,8 @@
         }
 
     </style>
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/materialize.min.js"></script>
 </head>
 <body>
 <nav class="index-banner ht">
@@ -98,19 +98,19 @@
             username: $('#username').val(),
             password: $('#password').val()
         };
-        $.post("http://localhost:3000/login", credentials, function (auth) {
+        $.post("/login", credentials, function (auth) {
             if (auth.success) {
                 window.localStorage.setItem('token', auth.token);
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:3000/noticesupload",
+                    url: "/noticesupload",
                     beforeSend: function (xhr) {
                         token = window.localStorage.getItem("token");
                         console.log(token);
                         xhr.setRequestHeader("x-access-token", token);
                     },
                     success: function () {
-                        window.location = "http://localhost:3000/noticesupload" + "?token=" + token;
+                        window.location = "/noticesupload" + "?token=" + token;
                     }
                 });
             }
