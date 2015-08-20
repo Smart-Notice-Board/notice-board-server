@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
     var passw = req.body.password
     crypto.pbkdf2(passw, 'Salt', 100, 30, function (err, key) {
         if (err) {
-            console.log(err);
+            //console.log(err);
             next(err);
         }
         passw = key.toString('hex');
