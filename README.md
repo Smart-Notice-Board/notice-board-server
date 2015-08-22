@@ -51,7 +51,7 @@ response => {"result": [
     {
       "Uid": 3,
       "Notice_Desc": "ejfaljekljlFK",
-      "Type": "IMP",
+      "Type": "image",
       "notice_priority": 4,
       "username": "eyu",
       "Semester": "Sem 4",
@@ -59,7 +59,8 @@ response => {"result": [
       "college_name": "rvce",
       "department": "cse",
       "stime": "10/07/2015 20:20",
-      "etime": "10/07/2015 23:20"
+      "etime": "10/07/2015 23:20",
+      "notice_content": null
     }}
 
 
