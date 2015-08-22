@@ -1,5 +1,6 @@
 var cfg = require('../config');
 var mysql = require('mysql');
+var _ = require('lodash');
 
 var connection = mysql.createConnection(cfg.mysql);
 
@@ -17,7 +18,7 @@ function fetchBoardName(cb) {
                 board_list.push(rows[i].board_name);
                 i++;
             }
-            cb(null, board_list);
+            cb(null, _.uniq(board_list));
 
         }
     });
