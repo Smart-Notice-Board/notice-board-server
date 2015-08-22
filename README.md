@@ -90,3 +90,17 @@ request   =>   if image or video:
 
 
 response   =>   {msg}
+
+
+
+
+> ##Board Details API (GET)  => /board_details
+
+response   =>    {
+  "boardInfo": [
+    "Sem 2",
+    "Sem 3",
+    "Sem 4",
+    "Sem 4"
+  ]
+}
