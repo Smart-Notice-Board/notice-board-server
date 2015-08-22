@@ -33,7 +33,7 @@ router.post('/', function (req, res, next) {
                             res.json({msg: err});
                         }
                         else {
-                            res.json({msg: "Notice saved successfully"});
+                            res.json({msg: "Notice uploaded successfully"});
                         }
                     });
                 }
@@ -48,7 +48,7 @@ router.post('/', function (req, res, next) {
                         res.json({err: err});
                     }
                     else {
-                        res.json({msg: "Text notice uploaded successfully"});
+                        res.json({msg: "Notice uploaded successfully"});
                     }
                 });
             }

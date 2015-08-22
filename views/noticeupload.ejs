@@ -80,18 +80,23 @@
             <div class="col s12 m12">
                 <div>
                     <form class="col s12" action="/noticesupload" method="post" enctype="multipart/form-data"
-                          id="formData">
+                          id="formData" nonvalidate>
                         <div class="row">
                             <div class="row">
                                 <div class="col s12">
                                     <div class="input-field ">
                                         <div class="col s12">
                                             <textarea id="textarea3" class="materialize-textarea"
-                                                      name="semester" required></textarea>
-                                            <label for="textarea3">Semester</label>
+                                                      name="board_name" required></textarea>
+                                            <label for="textarea3">Notice Board</label>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <select class="select" name="boardtype" id="boardtype">
+                                </select>
+                                <label class="active mtop">Select Notice Board</label>
                             </div>
                             <div class="input-field col s12">
                                 <select class="select" name="type" id="type">
@@ -163,7 +168,7 @@
                                     <div class="col s12">
                                         <div class="input-field ">
                                             <textarea id="textarea4" class="materialize-textarea"
-                                                      name="notice" required></textarea>
+                                                      name="notice_content"></textarea>
                                             <label for="textarea4">Notice</label>
                                         </div>
                                     </div>
@@ -208,6 +213,37 @@
     });
     $('#pick-a-start-time').lolliclock({autoclose: true});
     $('#pick-a-end-time').lolliclock({autoclose: true});
+
+
+//    $.getJSON("/board_details", function(result) {
+//        alert($('.content-nav').offset());
+//        console.log(result.boardInfo);
+//        var options = $("#boardtype");
+//        for (var i = 0; i < result.length; i++) {
+//            options.append($("<option />").val(result.boardInfo[i]).text(result.boardInfo[i]));
+//
+//        }
+//    });
+    $.ajax({
+        type: "GET",
+        url: "/board_details",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(info) {
+            $("#boardtype").get(0).options.length = 0;
+            $("#boardtype").get(0).options[0] = new Option("Select gender", "-1");
+
+            $.each(info.boardInfo, function(index, item) {
+                console.log(index,item);
+                $("#boardtype").get(0).options[$("#boardtype").get(0).options.length] = new Option(index,item);
+            });
+        },
+        error: function() {
+            alert("Failed to load genders");
+        }
+    });
+
+
 
     function logout() {
         window.localStorage.removeItem("token");

@@ -16,6 +16,7 @@ var login = require('./routes/login');
 var collegedet = require('./routes/collegeDet');
 var notices = require('./routes/notices');
 var noticesupload = require('./routes/noticesupload');
+var board_details = require('./routes/board_details')
 
 
 var app = express();
@@ -45,8 +46,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.bodyParser());
 
 //api not protected with jwt
-app.use('/collegedet', collegedet);
+//app.use('/collegedet', collegedet);
 app.use('/notices', notices);
+app.use('/board_details',board_details);
 
 app.use('/', routes);
 app.use('/login', login);
