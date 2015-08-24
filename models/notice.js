@@ -26,11 +26,11 @@ function storeNotices(param, cb) {
     var start_time = moment(param.body.startdate + " " + param.body.stime).format("DD/MM/YYYY HH:mm");
     var end_time = moment(param.body.enddate + " " + param.body.etime).format("DD/MM/YYYY HH:mm");
     if (param.body.type == "image" || param.body.type == "video") {
-        var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.body.board_name, param.files.fil.originalname, param.decoded.CollegeName, param.decoded.department, start_time, end_time,''];
+        var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.body.board_name, param.files.fil.originalname, param.decoded.CollegeName, param.decoded.department, start_time, end_time, ''];
     }
     else {
         //console.log("enter");
-        var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.body.board_name, 'no file', param.decoded.CollegeName, param.decoded.department, start_time, end_time,param.body.notice_content];
+        var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.body.board_name, 'no file', param.decoded.CollegeName, param.decoded.department, start_time, end_time, param.body.notice_content];
 
     }
     connection.query(query, val, function (err, rows) {
@@ -38,7 +38,7 @@ function storeNotices(param, cb) {
             cb(err, null);
         }
         else {
-            cb(null,rows);
+            cb(null, rows);
         }
     });
 }
