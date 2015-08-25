@@ -75,7 +75,7 @@
         </div>
         <div class="row">
             <div class="col s6">
-                <button class="btn waves-effect waves-light bttleft btttop" type="button" onclick="Add()">Create
+                <button class="btn waves-effect waves-light bttleft btttop" type="button" onclick="Add()">submit
                 </button>
             </div>
         </div>
@@ -110,7 +110,8 @@
     function Add(){
         var x = document.getElementById("textarea").value;
         window.localStorage.setItem('noticeBoardName', x);
-
+        var token = window.localStorage.getItem("token");
+        window.location = "/noticesupload?token=" + token;
     }
 </script>
 </body>

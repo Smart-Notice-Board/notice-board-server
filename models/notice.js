@@ -10,9 +10,9 @@ var connection = mysql.createConnection(cfg.mysql);
 
 function fetchNotices(param, cb) {
 
-    var query = "Select * from NOTICE where college_name = ? and department =? and board_name = ?";
+    var query = "Select * from NOTICE where board_name = ?";
 
-    connection.query(query, [param.college, param.department, param.board_name], function (err, rows) {
+    connection.query(query, [param.board_name], function (err, rows) {
         if (err) {
             cb(err, null);
         }
