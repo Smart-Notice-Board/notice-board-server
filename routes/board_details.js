@@ -6,13 +6,6 @@ var router = express.Router();
 var boardinfo = require('../models/boards');
 var _ = require('lodash');
 
-
-/*
- router.get('/',function(req,res,next){
- res.render('college');
- });
- */
-
 router.get('/',function(req,res,next){
     //console.log(req.body)
     boardinfo.fetchBoardName(function(err,boardinfo) {

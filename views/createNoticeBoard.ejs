@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../stylesheets/w3.css"/>
+    <link rel="stylesheet" href="../stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="../stylesheets/lolliclock.css">
+    <style>
+        .ht {
+            height: 200px;
+            z-index: -1;
+        }
+
+        .martop {
+            margin-top: -10%;
+        }
+
+        .color-corrector {
+            background-color: #ffffff;
+        }
+
+        .marleft {
+            margin-left: 1.8%;
+        }
+
+        .marbottom {
+            margin-top: 19%;
+        }
+
+        .marright {
+            margin-right: 50%;
+        }
+
+        .mleft {
+            margin-left: 199%;
+        }
+
+        .mtop {
+            margin-top: 2.5%;
+        }
+
+        .btleft {
+            margin-left: 111%;
+        }
+
+        .bttop {
+            margin-top: -13%;
+        }
+        .bttleft {
+            margin-left: 180%;
+        }
+
+
+        .btttop{
+            margin-top: 6%
+        }
+
+    </style>
+
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <style type="text/css"></style>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/lolliclock.js"></script>
+</head>
+
+<body>
+<nav class="index-banner ht">
+    <div class="nav-wrapper">
+        <ul id="nav-mobile" class="brand-logo left hide-on-med-and-down">
+            <li class="marleft marbottom">Create Notice Board</li>
+        </ul>
+        <div class="row">
+            <div class="col s6">
+                Welcome <%-username%>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <button class="btn waves-effect waves-light bttleft btttop" type="button" onclick="Add()">Create
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container z-depth-5 color-corrector">
+    <div class="col s12 m2">
+        <div class="row martop">
+            <div class="col s12 m12">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field ">
+                            <div class="col s12">
+                                            <textarea id="textarea" class="materialize-textarea"
+                                                      name="NoticeBoard"></textarea>
+                                <label for="textarea">NoticeBoard</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    console.log("sagey")
+    $(document).ready(function () {
+        $('select').material_select();
+        // $('select').material_select('destroy');
+    });
+    function Add(){
+        var x = document.getElementById("textarea").value;
+        window.localStorage.setItem('noticeBoardName', x);
+
+    }
+</script>
+</body>
+</html>
