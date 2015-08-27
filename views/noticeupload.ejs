@@ -1,65 +1,66 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../stylesheets/w3.css"/>
-<link rel="stylesheet" href="../stylesheets/materialize.min.css">
-<link rel="stylesheet" href="../stylesheets/lolliclock.css">
-<style>
-    .ht {
-        height: 200px;
-        z-index: -1;
-    }
+    <link rel="stylesheet" href="../stylesheets/w3.css"/>
+    <link rel="stylesheet" href="../stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="../stylesheets/lolliclock.css">
+    <link rel="stylesheet" type="text/css" href="../dist/semantic.min.css">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../dist/semantic.min.js"></script>
+    <style>
+        .ht {
+            height: 200px;
+            z-index: -1;
+        }
 
-    .martop {
-        margin-top: -10%;
-    }
+        .martop {
+            margin-top: -10%;
+        }
 
-    .color-corrector {
-        background-color: #ffffff;
-    }
+        .color-corrector {
+            background-color: #ffffff;
+        }
 
-    .marleft {
-        margin-left: 1.8%;
-    }
+        .marleft {
+            margin-left: 1.8%;
+        }
 
-    .marbottom {
-        margin-top: 19%;
-    }
+        .marbottom {
+            margin-top: 19%;
+        }
 
-    .marright {
-        margin-right: 50%;
-    }
+        .marright {
+            margin-right: 50%;
+        }
 
-    .mleft {
-        margin-left: 199%;
-    }
+        .mleft {
+            margin-left: 199%;
+        }
 
-    .mtop {
-        margin-top: 2.5%;
-    }
+        .mtop {
+            margin-top: 2.5%;
+        }
 
-    .btleft {
-        margin-left: 111%;
-    }
+        .btleft {
+            margin-left: 111%;
+        }
 
-    .bttop {
-        margin-top: -13%;
-    }
-    .bttleft {
-        margin-left: 180%;
-    }
+        .bttop {
+            margin-top: -13%;
+        }
 
+        .bttleft {
+            margin-left: 180%;
+        }
 
-    .btttop{
-        margin-top: 6%
-    }
+        .btttop {
+            margin-top: 6%
+        }
 
-</style>
-
-<script src="../js/jquery-2.1.4.min.js"></script>
-<style type="text/css"></style>
-<script src="../js/materialize.min.js"></script>
-<script src="../js/lolliclock.js"></script>
+    </style>
+    <style type="text/css"></style>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/lolliclock.js"></script>
 </head>
 
 <body>
@@ -70,12 +71,13 @@
         </ul>
         <div class="row">
             <div class="col s6">
-                Welcome <%-username%>
+                Welcome <%- username %>
             </div>
         </div>
         <div class="row">
             <div class="col s6">
-                <button class="btn waves-effect waves-light bttleft btttop" type="button" onclick="createNoticeBoard()">Create Notice Board
+                <button class="btn waves-effect waves-light bttleft btttop" type="button" onclick="createNoticeBoard()">
+                    Create Notice Board
                 </button>
             </div>
         </div>
@@ -89,11 +91,15 @@
                     <form class="col s12" action="/noticesupload" method="post" enctype="multipart/form-data"
                           id="formData" nonvalidate>
                         <div class="row">
-                            <div class="input-field col s12">
-                                <select class="select" name="board" id="board">
-                                </select>
-                                <label class="active mtop">Select Notice Board</label>
-                            </div>
+                            <!--<div class="input-field col s12">
+                            <select class = "select" name="board" id="board">
+
+                            </select>
+                            <label>Select Notice Board</label>
+                                </div>-->
+                            <select  class="ui dropdown" id="board">
+                                <option value="" disabled selected >Choose notice board</option>
+                            </select>
                             <div class="input-field col s12">
                                 <select class="select" name="type" id="type">
                                     <option value="image" id="image">Image</option>
@@ -180,7 +186,8 @@
                         </div>
                         <div class="row">
                             <div class="col s6">
-                                <button class="btn waves-effect waves-light btleft bttop" type="button" onclick="logout()">Logout
+                                <button class="btn waves-effect waves-light btleft bttop" type="button"
+                                        onclick="logout()">Logout
                                 </button>
                             </div>
                         </div>
@@ -194,10 +201,7 @@
 
 <script type="text/javascript">
     console.log("sagey")
-    $(document).ready(function () {
-        $('select').material_select();
-       // $('select').material_select('destroy');
-    });
+
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
@@ -218,22 +222,46 @@
     $('#pick-a-end-time').lolliclock({autoclose: true});
 
 
+    $.get('/board_details/', function (data) {
 
-    $.get('board_details/',function(data){
-
-        for(var j = 0; j < data.boardInfo.length; j++)
-        {
-            console.log(data.boardInfo[j]);
-            console.log(j);
+        for (var j = 0; j < data.boardInfo.length; j++) {
+            /*console.log(data.boardInfo[j]);
+            console.log(j);*/
 
            // $('#board').contents().remove();
-            var newOption = $('<option/>');
-            newOption.attr('text', data.boardInfo[j]);
-            newOption.attr('value', (j).toString());
-            $('#board').append(newOption);
+            /*var newOption = $('<option/>');
+            newOption.attr('value', data.boardInfo[j]);
+            newOption.attr('text', data.boardInfo[j]);*/
+
+            $('#board').append('<option value="' + data.boardInfo[j] + '">' + data.boardInfo[j] + '</option>');
+
         }
+        $('select').material_select();
     });
 
+/*    $select = $('.dropdown');
+     $.ajax({
+     url: '/board_details',
+     dataType:'JSON',
+     success:function(data){
+     console.log(data.boardInfo);
+     //$select.html('');
+     //iterate over the data and append a select option
+     for(var j = 0; j < data.boardInfo.length; j++)
+     {
+     $select.append('<option value="' + data.boardInfo[j] + '">' + data.boardInfo[j] + '</option>');
+     }
+     },
+     error:function(){
+     //if there is an error append a 'none available' option
+     $select.html('<option value="-1">none available</option>');
+     }
+     });*/
+/*    $('#board')
+            .api({
+                action: 'get board_details'
+            })
+    ;*/
     function logout() {
         window.localStorage.removeItem("token");
         window.location = "/"
@@ -255,23 +283,24 @@
         url = url + "?token=" + token;
         formdata = new FormData(this);
         console.log(formdata);
-        if(board_name != null) {
+        if (board_name != null) {
             formdata.append('board_name', board_name);
         }
-            var posting = $.ajax({
-                url: url,
-                type: "POST",
-                data: formdata,
-                success: function (info) {
-                    console.log("info", info);
-                    Materialize.toast(info.msg, 2000);
-                },
-                contentType: false,
-                processData: false
-            });
+        var posting = $.ajax({
+            url: url,
+            type: "POST",
+            data: formdata,
+            success: function (info) {
+                console.log("info", info);
+                Materialize.toast(info.msg, 2000);
+            },
+            contentType: false,
+            processData: false
+        });
 
         window.localStorage.removeItem("noticeBoardName");
     });
 </script>
+
 </body>
 </html>
