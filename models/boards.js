@@ -9,9 +9,10 @@ function fetchBoardName(cb) {
 
     connection.query(query, function (err, rows) {
         if (err) {
-            console.log("Hi");
             cb(err, null);
-        } else {
+        }
+        else
+        {
             board_list =[];
             i=0;
             while(i<rows.length){
@@ -25,8 +26,22 @@ function fetchBoardName(cb) {
 
 }
 
+function storeBoardName(param,cb) {
+    var query = "Insert into COLLEGE_DET values (?,?,?,?) ";
+    connection.query(query, [param.decoded.CollegeName, param.decoded.department, param.body.board_name, ''], function (err, rows) {
+        if (err) {
+            cb(err, null);
+        }
+        else {
+            cb(null, rows);
+        }
+
+    });
+}
+
 
 module.exports = {
-    fetchBoardName: fetchBoardName
+    fetchBoardName: fetchBoardName,
+    storeBoardName: storeBoardName
 }
 

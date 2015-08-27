@@ -24,9 +24,8 @@ function fetchNotices(param, cb) {
 }
 function storeNotices(param,cb) {
     //console.log(param.body);
-    var defered = Q.defer();
     var query = "Insert into NOTICE values (?,?,?,?,?,?,?,?,?,?,?,?) ";
-    var query2 = "Insert into COLLEGE_DET values (?,?,?,?) ";
+    //var query2 = "Insert into COLLEGE_DET values (?,?,?,?) ";
 
     var start_time = moment(param.body.startdate + " " + param.body.stime).format("DD/MM/YYYY HH:mm");
     var end_time = moment(param.body.enddate + " " + param.body.etime).format("DD/MM/YYYY HH:mm");
@@ -44,24 +43,12 @@ function storeNotices(param,cb) {
 
     connection.query(query, val, function (err, rows) {
         if (err) {
+            console.log("err")
             cb(err, null);
         }
         else {
-            if (rows.affectedRows) {
-                connection.query(query2, [param.decoded.CollegeName, param.decoded.department, param.body.board_name, ''], function (err, rows2) {
-                    if (err) {
-                        cb(err, null);
-                        return;
-                    }
-                    else{
-                        cb(null,rows2);
-                    }
-
-                });
-            }
-            else{
-                cb(err);
-            }
+            console.log("OK");
+            cb(null,rows);
         }
     });
 

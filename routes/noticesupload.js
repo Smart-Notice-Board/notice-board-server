@@ -30,9 +30,11 @@ router.post('/', function (req, res, next) {
                 else {
                     notice.storeNotices(req, function (err, notice) {
                         if (err) {
+                            console.log("errrrrrrrr");
                             res.json({msg: err});
                         }
                         else {
+                            console.log("jdhakjhejkahekjhjkehakj");
                             res.json({msg: "Notice uploaded successfully"});
                         }
                     });
