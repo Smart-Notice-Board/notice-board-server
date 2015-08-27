@@ -5,7 +5,7 @@ var userinfo = require('../models/User')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.send("uname" + req.params.uname)
-  res.render('index');
+  res.render('homepage');
 });
 
 
