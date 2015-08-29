@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //api not protected with jwt
 app.use('/notices', notices);
-app.use('/board_details',board_details);
+app.use('/board_details', board_details);
 
 app.use('/', routes);
 app.use('/login', login);

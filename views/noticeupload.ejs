@@ -98,11 +98,11 @@
                             <label>Select Notice Board</label>
                                 </div>-->
 
-                                <div class="input-field col s12">
-                            <select  class="select" id="board" name = "board_name">
-                                <option value="" disabled selected >Choose notice board</option>
-                            </select>
-                                    </div>
+                            <div class="input-field col s12">
+                                <select class="select" id="board" name="board_name">
+                                    <option value="" disabled selected>Choose notice board</option>
+                                </select>
+                            </div>
 
                             <div class="input-field col s12">
                                 <select class="select" name="type" id="type">
@@ -229,43 +229,12 @@
     $.get('/board_details/', function (data) {
 
         for (var j = 0; j < data.boardInfo.length; j++) {
-            /*console.log(data.boardInfo[j]);
-            console.log(j);*/
-
-           // $('#board').contents().remove();
-            /*var newOption = $('<option/>');
-            newOption.attr('value', data.boardInfo[j]);
-            newOption.attr('text', data.boardInfo[j]);*/
-
             $('#board').append('<option value="' + data.boardInfo[j] + '">' + data.boardInfo[j] + '</option>');
-
         }
         $('select').material_select();
     });
 
-/*    $select = $('.dropdown');
-     $.ajax({
-     url: '/board_details',
-     dataType:'JSON',
-     success:function(data){
-     console.log(data.boardInfo);
-     //$select.html('');
-     //iterate over the data and append a select option
-     for(var j = 0; j < data.boardInfo.length; j++)
-     {
-     $select.append('<option value="' + data.boardInfo[j] + '">' + data.boardInfo[j] + '</option>');
-     }
-     },
-     error:function(){
-     //if there is an error append a 'none available' option
-     $select.html('<option value="-1">none available</option>');
-     }
-     });*/
-/*    $('#board')
-            .api({
-                action: 'get board_details'
-            })
-    ;*/
+
     function logout() {
         window.localStorage.removeItem("token");
         window.location = "/"
@@ -282,15 +251,8 @@
         var $form = $(this),
                 url = $form.attr('action');
         token = window.localStorage.getItem("token");
-        board_name = window.localStorage.getItem("noticeBoardName");
-        console.log(board_name);
         url = url + "?token=" + token;
         formdata = new FormData(this);
-        console.log(formdata);
-        if (board_name != null) {
-            console.log(board_name);
-            formdata.append('board_name', board_name);
-        }
         var posting = $.ajax({
             url: url,
             type: "POST",
@@ -303,7 +265,6 @@
             processData: false
         });
 
-        window.localStorage.removeItem("noticeBoardName");
     });
 </script>
 

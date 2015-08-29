@@ -22,7 +22,7 @@ function fetchNotices(param, cb) {
     });
 
 }
-function storeNotices(param,cb) {
+function storeNotices(param, cb) {
     //console.log(param.body);
     var query = "Insert into NOTICE values (?,?,?,?,?,?,?,?,?,?,?,?) ";
     //var query2 = "Insert into COLLEGE_DET values (?,?,?,?) ";
@@ -48,7 +48,7 @@ function storeNotices(param,cb) {
         }
         else {
             console.log("OK");
-            cb(null,rows);
+            cb(null, rows);
         }
     });
 
