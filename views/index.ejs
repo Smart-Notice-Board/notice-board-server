@@ -130,8 +130,9 @@
                         xhr.setRequestHeader("x-access-token", token);
                     },
                     success: function () {
-                        $('#circle').hide();
+
                         window.location = "/noticesupload" + "?token=" + token;
+                        $('#circle').hide();
                     }
                 });
             }
