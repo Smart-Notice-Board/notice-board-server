@@ -4,7 +4,6 @@
 var cfg = require('../config');
 var mysql = require('mysql');
 var moment = require('moment');
-var Q = require('Q');
 var connection = mysql.createConnection(cfg.mysql);
 
 
