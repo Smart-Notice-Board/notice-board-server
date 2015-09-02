@@ -8,21 +8,35 @@ var connection = mysql.createConnection(cfg.mysql);
 
 
 function fetchUser(uname, passw, cb) {
-    var query = "Select * from USER where username = ? and password = ?";
 
-    connection.query(query, [uname, passw], function (err, rows) {
-        if (err) {//console.log("feew");
-            cb(err, null);
-        } else if (!rows[0]) {
-            cb("User not found", null);
+    cfg.pool.getConnection(function(err,connection) {
+        if (err) {
+            connection.release();
+            res.json({"code": 100, "status": "Error in connection database"});
+            return;
         }
-        else {
-            //console.log("frfrrifjr");
-            cb(null, rows[0]);
-        }
+        console.log('connected as id ' + connection.threadId);
+        var query = "Select * from USER where username = ? and password = ?";
+
+        connection.query(query, [uname, passw], function (err, rows) {
+            connection.release();
+            if (err) {//console.log("feew");
+                cb(err, null);
+            } else if (!rows[0]) {
+                cb("User not found", null);
+            }
+            else {
+                //console.log("frfrrifjr");
+                cb(null, rows[0]);
+            }
+        });
+        connection.on('error', function (err) {
+            res.json({"code": 100, "status": "Error in connection database"});
+            return;
+        });
     });
-
 }
+
 
 
 function insToken(token, cb) {
