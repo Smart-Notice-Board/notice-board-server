@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
 
         if (req.body.type == "image" || req.body.type == "video") {
 
-            //console.log("HI");
+            //console.log(req.files);
             old_path = "public/uploads/" + req.files.fil.name;
             new_path = "public/uploads/" + req.body.type + "/" + req.files.fil.originalname;
             //console.log(new_path);
@@ -30,9 +30,11 @@ router.post('/', function (req, res, next) {
                 else {
                     notice.storeNotices(req, function (err, notice) {
                         if (err) {
+                            console.log("errrrrrrrr",err);
                             res.json({msg: err});
                         }
                         else {
+                            console.log("jdhakjhejkahekjhjkehakj");
                             res.json({msg: "Notice uploaded successfully"});
                         }
                     });

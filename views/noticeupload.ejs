@@ -1,57 +1,66 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../stylesheets/w3.css"/>
-<link rel="stylesheet" href="../stylesheets/materialize.min.css">
-<link rel="stylesheet" href="../stylesheets/lolliclock.css">
-<style>
-    .ht {
-        height: 200px;
-        z-index: -1;
-    }
+    <link rel="stylesheet" href="../stylesheets/w3.css"/>
+    <link rel="stylesheet" href="../stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="../stylesheets/lolliclock.css">
+    <link rel="stylesheet" type="text/css" href="../dist/semantic.min.css">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../dist/semantic.min.js"></script>
+    <style>
+        .ht {
+            height: 200px;
+            z-index: -1;
+        }
 
-    .martop {
-        margin-top: -10%;
-    }
+        .martop {
+            margin-top: -10%;
+        }
 
-    .color-corrector {
-        background-color: #ffffff;
-    }
+        .color-corrector {
+            background-color: #ffffff;
+        }
 
-    .marleft {
-        margin-left: 1.8%;
-    }
+        .marleft {
+            margin-left: 1.8%;
+        }
 
-    .marbottom {
-        margin-top: 19%;
-    }
+        .marbottom {
+            margin-top: 19%;
+        }
 
-    .marright {
-        margin-right: 50%;
-    }
+        .marright {
+            margin-right: 50%;
+        }
 
-    .mleft {
-        margin-left: 300%;
-    }
+        .mleft {
+            margin-left: 199%;
+        }
 
-    .mtop {
-        margin-top: 2.5%;
-    }
+        .mtop {
+            margin-top: 2.5%;
+        }
 
-    .btleft {
-        margin-left: 179%;
-    }
+        .btleft {
+            margin-left: 111%;
+        }
 
-    .bttop {
-        margin-top: 10%;
-    }
+        .bttop {
+            margin-top: -13%;
+        }
 
-</style>
+        .bttleft {
+            margin-left: 180%;
+        }
 
-<script src="../js/jquery-2.1.4.min.js"></script>
-<style type="text/css"></style>
-<script src="../js/materialize.min.js"></script>
-<script src="../js/lolliclock.js"></script>
+        .btttop {
+            margin-top: 6%
+        }
+
+    </style>
+    <style type="text/css"></style>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/lolliclock.js"></script>
 </head>
 
 <body>
@@ -62,17 +71,17 @@
         </ul>
         <div class="row">
             <div class="col s6">
-                Welcome <%-username%>
+                Welcome <%- username %>
             </div>
         </div>
         <div class="row">
             <div class="col s6">
-                <button class="btn waves-effect waves-light btleft bttop" type="button" onclick="logout()">Logout
+                <button class="btn waves-effect waves-light bttleft btttop" type="button" onclick="createNoticeBoard()">
+                    Create Notice Board
                 </button>
             </div>
         </div>
     </div>
-
 </nav>
 <div class="container z-depth-5 color-corrector">
     <div class="col s12 m2">
@@ -82,29 +91,26 @@
                     <form class="col s12" action="/noticesupload" method="post" enctype="multipart/form-data"
                           id="formData" nonvalidate>
                         <div class="row">
-                            <div class="row">
-                                <div class="col s12">
-                                    <div class="input-field ">
-                                        <div class="col s12">
-                                            <textarea id="textarea3" class="materialize-textarea"
-                                                      name="board_name" required></textarea>
-                                            <label for="textarea3">Notice Board</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--<div class="input-field col s12">
+                            <select class = "select" name="board" id="board">
+
+                            </select>
+                            <label>Select Notice Board</label>
+                                </div>-->
+
                             <div class="input-field col s12">
-                                <select class="select" name="boardtype" id="boardtype">
+                                <select class="select" id="board" name="board_name">
+                                    <option value="" disabled selected>Choose notice board</option>
                                 </select>
-                                <label class="active mtop">Select Notice Board</label>
                             </div>
+
                             <div class="input-field col s12">
                                 <select class="select" name="type" id="type">
+                                    <option value="" disabled selected>Choose notice type</option>
                                     <option value="image" id="image">Image</option>
                                     <option value="video" id="video">Video</option>
                                     <option value="text" id="text">Text</option>
                                 </select>
-                                <label class="active mtop">Select Notice Type</label>
                             </div>
                             <div class="row">
                                 <div class="col s12">
@@ -182,6 +188,13 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col s6">
+                                <button class="btn waves-effect waves-light btleft bttop" type="button"
+                                        onclick="logout()">Logout
+                                </button>
+                            </div>
+                        </div>
 
                     </form>
                 </div>
@@ -192,9 +205,7 @@
 
 <script type="text/javascript">
     console.log("sagey")
-    $(document).ready(function () {
-        $('select').material_select();
-    });
+
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
@@ -215,41 +226,23 @@
     $('#pick-a-end-time').lolliclock({autoclose: true});
 
 
-//    $.getJSON("/board_details", function(result) {
-//        alert($('.content-nav').offset());
-//        console.log(result.boardInfo);
-//        var options = $("#boardtype");
-//        for (var i = 0; i < result.length; i++) {
-//            options.append($("<option />").val(result.boardInfo[i]).text(result.boardInfo[i]));
-//
-//        }
-//    });
-    $.ajax({
-        type: "GET",
-        url: "/board_details",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(info) {
-            $("#boardtype").get(0).options.length = 0;
-            $("#boardtype").get(0).options[0] = new Option("Select gender", "-1");
+    $.get('/board_details/', function (data) {
 
-            $.each(info.boardInfo, function(index, item) {
-                console.log(index,item);
-                $("#boardtype").get(0).options[$("#boardtype").get(0).options.length] = new Option(index,item);
-            });
-        },
-        error: function() {
-            alert("Failed to load genders");
+        for (var j = 0; j < data.boardInfo.length; j++) {
+            $('#board').append('<option value="' + data.boardInfo[j] + '">' + data.boardInfo[j] + '</option>');
         }
+        $('select').material_select();
     });
-
 
 
     function logout() {
         window.localStorage.removeItem("token");
         window.location = "/"
+    }
 
-
+    function createNoticeBoard() {
+        token = window.localStorage.getItem("token");
+        window.location = "/createBoard?token=" + token;
     }
 
     $("#formData").submit(function (event) {
@@ -259,12 +252,13 @@
                 url = $form.attr('action');
         token = window.localStorage.getItem("token");
         url = url + "?token=" + token;
+        formdata = new FormData(this);
         var posting = $.ajax({
             url: url,
             type: "POST",
-            data: new FormData(this),
+            data: formdata,
             success: function (info) {
-                console.log("info",info);
+                console.log("info", info);
                 Materialize.toast(info.msg, 2000);
             },
             contentType: false,
@@ -272,9 +266,7 @@
         });
 
     });
-    $('#submitButton').on('click', function(){
-        $("#formData").reset();
-    });
 </script>
+
 </body>
 </html>

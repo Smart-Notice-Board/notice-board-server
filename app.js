@@ -16,7 +16,8 @@ var login = require('./routes/login');
 var collegedet = require('./routes/collegeDet');
 var notices = require('./routes/notices');
 var noticesupload = require('./routes/noticesupload');
-var board_details = require('./routes/board_details')
+var board_details = require('./routes/board_details');
+var createBoard = require('./routes/createBoard');
 
 
 var app = express();
@@ -36,7 +37,7 @@ app.use(multer({
 }));
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -46,9 +47,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.bodyParser());
 
 //api not protected with jwt
-//app.use('/collegedet', collegedet);
 app.use('/notices', notices);
-app.use('/board_details',board_details);
+app.use('/board_details', board_details);
 
 app.use('/', routes);
 app.use('/login', login);
@@ -80,6 +80,7 @@ app.use(function (req, res, next) {
     }
 });
 app.use('/noticesupload', noticesupload);
+app.use('/createBoard', createBoard);
 //app.use('/logout', logout);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
