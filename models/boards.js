@@ -38,8 +38,9 @@ function fetchBoardName(cb) {
 
 function storeBoardName(param,cb) {
     var query = "Insert into COLLEGE_DET values (?,?,?,?) ";
-    connection.query(query, [param.decoded.CollegeName, param.decoded.department, param.body.board_name, ''], function (err, rows) {
+    connection.query(query, [param.decoded.CollegeName, param.decoded.department, '', param.body.board_name], function (err, rows) {
         if (err) {
+            console.log("ERR",err);
             cb(err, null);
         }
         else {
