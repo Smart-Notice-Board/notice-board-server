@@ -1,6 +1,15 @@
 # Smart-notice-board
 Nodejs Server for the digital notice board
 
+## Installaition instructions
+
+```sh
+git clone https://github.com/Smart-Notice-Board/Smart-notice-board
+cd Smart-notice-board
+npm install
+node bin/www
+```
+
 > ##College Details API (GET)=> /collegeDet
 
 request => none
