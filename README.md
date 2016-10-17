@@ -1,6 +1,20 @@
 # Smart-notice-board
 Nodejs Server for the digital notice board
 
+## Setup
+
+### Prerequisites
+* Install [node.js](https://nodejs.org/en/download/) and mysql
+* Check that you have correct mysql config in config.js
+
+### Installation
+```sh
+git clone -b prototype https://github.com/Smart-Notice-Board/notice-board-server
+cd notice-board-server
+npm install
+node bin/www
+```
+
 > ##College Details API (GET)=> /collegeDet
 
 request => none
