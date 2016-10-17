@@ -9,7 +9,11 @@ Nodejs Server for the digital notice board
 
 ### Installation
 ```sh
+<<<<<<< HEAD
+git clone -b prototype https://github.com/Smart-Notice-Board/notice-board-server
+=======
 git clone https://github.com/Smart-Notice-Board/notice-board-server
+>>>>>>> github/master
 cd notice-board-server
 npm install
 node bin/www

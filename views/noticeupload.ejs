@@ -91,18 +91,18 @@
                     <form class="col s12" action="/noticesupload" method="post" enctype="multipart/form-data"
                           id="formData" nonvalidate>
                         <div class="row">
-                            <!--<div class="input-field col s12">
+                            <div class="input-field col s12">
                             <select class = "select" name="board" id="board">
 
                             </select>
                             <label>Select Notice Board</label>
-                                </div>-->
+                                </div>
 
-                            <div class="input-field col s12">
+                            <!-- <div class="input-field col s12">
                                 <select class="select" id="board" name="board_name">
                                     <option value="" disabled selected>Choose notice board</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <div class="input-field col s12">
                                 <select class="select" name="type" id="type">
@@ -227,7 +227,7 @@
 
 
     $.get('/board_details/', function (data) {
-
+        console.log(data);
         for (var j = 0; j < data.boardInfo.length; j++) {
             $('#board').append('<option value="' + data.boardInfo[j] + '">' + data.boardInfo[j] + '</option>');
         }

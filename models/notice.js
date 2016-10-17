@@ -5,7 +5,6 @@ var cfg = require('../config');
 var mysql = require('mysql');
 var moment = require('moment');
 var fs = require('fs');
-var mm = require('musicmetadata');
 var connection = mysql.createConnection(cfg.mysql);
 
 
@@ -38,7 +37,7 @@ function fetchNotices(param, cb) {
 
 
 function storeNotices(param,cb) {
-    //console.log(param.body);
+    console.log(param.body);
     cfg.pool.getConnection(function(err,connection) {
         if (err) {
             connection.release();
@@ -54,11 +53,12 @@ function storeNotices(param,cb) {
 
 
         if (param.body.type == "image" || param.body.type == "video") {
-            var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.body.board_name, param.files.fil.originalname, param.decoded.CollegeName, param.decoded.department, start_time, end_time, ''];
+            var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.files.fil.originalname, param.decoded.CollegeName, param.decoded.department, start_time, end_time,'',  param.body.board];
+            console.log(val);
         }
         else {
             //console.log("enter");
-            var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, param.body.board_name, 'no file', param.decoded.CollegeName, param.decoded.department, start_time, end_time, param.body.notice_content];
+            var val = ['', param.body.description, param.body.type, param.body.priority, param.decoded.username, 'no file', param.decoded.CollegeName, param.decoded.department, start_time, end_time, param.body.notice_content, param.body.board];
 
         }
 
